@@ -1,0 +1,87 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body, html{
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: steelblue;
+}
+
+
+h1{
+    text-align: center;
+    color: white;
+    margin-bottom: 50px;
+}
+
+button{
+    display: block;
+    border: none;
+    border-radius: 5px;
+    height: 50px;
+    width: 100%;
+    margin: 0 auto 10px;
+    background-color: lightblue;
+    cursor: pointer;
+}
+
+.mg-bt-50{
+    margin-bottom: 50px;
+}
+
+.login-box{
+    box-sizing: border-box;
+    width: 400px;
+    height: 500px;
+    padding: 50px;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding-top: 80px;
+    border-radius: 5px;
+}
+
+.login-item{
+    width: 100%;
+    /* background-color: rgba(111, 42, 168, 0.7); */
+    margin-bottom: 40px
+}
+
+.login-item input{
+    display: block;
+    width: 100%;
+    height: 30px;
+    color: white;
+    font-size: 1.1em;
+}
+.login-item label span{
+    display: inline-block;
+    transform: translateY(100%);
+    transition: transform 0.1s ease-out;
+}
+
+.login-item .recovery{
+    color: #ccc;
+    transform: translateY(0);
+}
+
+.text-white{
+    color: white;
+}
+
+a{
+    color: lightblue;
+    text-decoration: none;
+}
+
+input{
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid white;
+    outline: none;
+}
