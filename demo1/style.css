@@ -1,0 +1,51 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+html,body{
+    width: 100%;
+    height: 100%;
+}
+
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+h3{
+    color: white;
+    display: none;
+    font-size: 30px;
+    margin-bottom: 100px;
+    text-align: left;
+}
+
+.container{
+    width: 90%;
+    height: 80%;
+    min-width: 900px;
+    display: flex;
+    justify-content: center;
+}
+
+.panel{
+    height: 100%;
+    width: 100px;
+    margin-left: 20px;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    transition: width 1s ease;
+}
+
+.active{
+    width: 400px;
+    flex: 1;
+}
+
+.active h3{
+    display: block;
+}

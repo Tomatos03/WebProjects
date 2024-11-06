@@ -1,0 +1,80 @@
+*{
+    margin: 0;
+}
+
+body, html{
+    width: 100%;
+    height: 100%;
+}
+
+.panel {
+    height: 100%;
+    width: 100%;
+    min-width: 800px;
+    display: flex;
+}
+
+/* .panel-left, */
+.bg-left,
+.bg-right{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+    font-weight: bold;
+    color: white;
+    position: relative;
+}
+
+.bg-left{
+    background-color: rgba(79, 40, 151, 0.6);
+}
+
+.bg-right{
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.panel-left,
+.panel-right{
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    transition: width 1s ease;
+}
+
+.panel-right{
+    height: 100%;
+    width: 50%;
+    background-image: url("xbox.jpg");
+}
+
+.panel-left{
+    height: 100%;
+    width: 50%;
+    background-image: url("ps.jpg");
+}
+
+p{
+    margin-bottom: 50px;
+}
+
+button{
+    border: 2px solid white;
+    width: 250px;
+    height: 80px;
+    background-color: transparent;
+    color: white;
+}
+
+
+.bt-left:hover{
+    background-color: rgb(79, 40, 151);
+}
+
+
+.bt-right:hover{
+    background-color: rgb(49, 143, 30);
+}
