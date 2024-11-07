@@ -48,13 +48,13 @@ body, html{
 .panel-right{
     height: 100%;
     width: 50%;
-    background-image: url("xbox.jpg");
+    background-image: url("./images/xbox.jpg");
 }
 
 .panel-left{
     height: 100%;
     width: 50%;
-    background-image: url("ps.jpg");
+    background-image: url("./images/ps.jpg");
 }
 
 p{
