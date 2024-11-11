@@ -1,0 +1,87 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    width: 100vw;
+    height: 100vh;
+    background-color: #f0f0f0;
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h1{
+    margin-bottom: 25px;
+}
+
+h2{
+    margin: 0 50px 25px 0;
+}
+
+button{
+    width: 25px;
+    height: 25px;
+    background-image: url("./images/down-arrow.png");
+    background-size: cover;        
+    background-repeat: no-repeat;   
+    background-color: transparent;
+    outline: none;
+    border:none;
+    position: absolute;
+    right: 25px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+
+.btn-active{
+    background-image: url("./images/circle.png");
+}
+
+.bk-active{
+    background-color: white;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+p{
+    display: none;
+}
+
+.p-active{
+    display: block;
+}
+
+.item{
+    position: relative;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 25px;
+    transition: .3s ease;
+}
+
+
+.bk-active::before {
+    content: "";
+    position: absolute;
+    opacity: 0;
+    width: 100px;
+    height: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    background-image: url("./images/question-colored.png");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: opacity .3s ease; 
+}
+
+.bk-active.bk-active-op::before {
+    opacity: 0.3;
+}
+
+
