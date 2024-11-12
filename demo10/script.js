@@ -1,12 +1,10 @@
 const btns = document.querySelectorAll("button");
-const ps = document.querySelectorAll("p");
 
-btns.forEach((btn) =>{
+btns.forEach((btn) => {
     btn.addEventListener('click', () => {
-        btn.classList.toggle('btn-active');
-        btn.nextElementSibling.classList.toggle('p-active');
-        const parent = btn.parentElement.classList;
-        parent.toggle('bk-active');
-        parent.toggle('bk-active-op');
+        btn.parentElement.classList.toggle('active');
+        setTimeout(() => {
+            btn.parentElement.classList.toggle('show');
+        }, 10);
     });
 });

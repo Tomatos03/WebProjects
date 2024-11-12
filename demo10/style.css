@@ -5,21 +5,12 @@
 }
 
 body{
-    width: 100vw;
-    height: 100vh;
     background-color: #f0f0f0;
     font-size: 16px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 h1{
-    margin-bottom: 25px;
-}
-
-h2{
-    margin: 0 50px 25px 0;
+    margin: 50px;
 }
 
 button{
@@ -32,40 +23,48 @@ button{
     outline: none;
     border:none;
     position: absolute;
-    right: 25px;
-    top: 50%;
-    transform: translateY(-50%);
-}
-
-
-.btn-active{
-    background-image: url("./images/circle.png");
-}
-
-.bk-active{
-    background-color: white;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    right: 15px;
+    top: 25px;
 }
 
 p{
     display: none;
+    margin: 20px 0;
+    font-size: 1.2em;
 }
 
-.p-active{
-    display: block;
+.container{
+    margin: 0 auto;
+    max-width: 600px;
 }
 
 .item{
+    overflow: hidden;
     position: relative;
     border: 1px solid black;
     border-radius: 5px;
     padding: 20px;
-    margin-bottom: 25px;
+    margin: 20px 0;
     transition: .3s ease;
 }
 
+.item.active{
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    transition: .3s ease;
+}
 
-.bk-active::before {
+.active p{
+    display: block;
+}
+
+
+.active button{
+    background-image: url("./images/circle.png");
+}
+
+
+.active::before {
     content: "";
     position: absolute;
     opacity: 0;
@@ -77,11 +76,10 @@ p{
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
-    transition: opacity .3s ease; 
+    transition: opacity .2s ease-in-out;
 }
 
-.bk-active.bk-active-op::before {
-    opacity: 0.3;
+.active.show::before {
+    opacity: 0.5;
 }
-
 
