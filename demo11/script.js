@@ -1,4 +1,4 @@
-const API_URL = "https://api.wmdb.tv/api/v1/top?type=Douban&skip=0&limit=50&lang=Cn";
+const API_URL = "https://api.wmdb.tv/api/v1/top?type=Douban&skip=0&limit=100&lang=Cn";
 
 // const items = document.querySelectorAll('.movie');
 const main = document.querySelector('main')
