@@ -1,0 +1,46 @@
+*{
+    font-size: 16px;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+img{
+    width: 500px;
+    height: 500px;
+    object-fit:cover;
+}
+
+button{
+    cursor: pointer;
+    height: 30px;
+    flex: 1;
+    color: white;
+    background-color: rgb(126, 37, 209);
+    border: none;
+}
+
+.container{
+    overflow: hidden;
+}
+
+.btn-container{
+    display: flex;
+    justify-content: space-around;
+    gap: 10px;
+}
+
+.slide-container{
+    width: 500px;
+    display: flex;
+    transform: translateX(0);
+    transition: transform 0.5s ease-in-out;
+}
