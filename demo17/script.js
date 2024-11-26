@@ -13,6 +13,7 @@ const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", 
 const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
 let currentMode = 0; // 0 Dark 1 Light
+let cnt = 0;
 
 
 btn.addEventListener('click', (e) => switchTheme(e));
@@ -47,18 +48,18 @@ function setTime() {
 
     const am_pm = hour < 12 ? "AM" : "PM";
 
-    time_container.textContent = `${hour}:${minutes} ${am_pm}`;
+    const str_minute = minutes < 10 ? `0${minutes}` : `${minutes}`;
+    time_container.textContent = `${hour}:${str_minute} ${am_pm}`;
     date_container.textContent = `${days[day]}, ${months[month]} ${date}`;
 
-    const hour_to_deg = scale(hour, 0, 11, 0, 360) - 180;
-    const minute_to_deg = scale(minutes, 0, 59, 0, 360) - 180;
-    const second_to_deg = scale(second, 0, 59, 0, 360) - 180;
+    const hour_to_deg = scale(hour % 12, 0, 12, 0, 360);
+    const minute_to_deg = scale(minutes, 0, 60, 0, 360);
+    let second_to_deg = scale(second, 0, 60, 0, 360);
+    if(second == 0) ++cnt;
 
-    console.log(hour_to_deg);
-
-    needle_hour.style.transform = `translate(-50%, 0) rotate(${hour_to_deg}deg)`;
-    needle_minute.style.transform = `translate(-50%, 0) rotate(${minute_to_deg}deg)`;
-    needle_second.style.transform = `translate(-50%, 0) rotate(${second_to_deg}deg)`;
+    needle_hour.style.transform = `translate(-50%, 0) rotate(${hour_to_deg - 180}deg)`;
+    needle_minute.style.transform = `translate(-50%, 0) rotate(${minute_to_deg - 180}deg)`;
+    needle_second.style.transform = `translate(-50%, 0) rotate(${(cnt - 1) * 360 + second_to_deg - 180}deg)`;
 }
 
 // StackOverflow https://stackoverflow.com/questions/10756313/javascript-jquery-map-a-range-of-numbers-to-another-range-of-numbers
