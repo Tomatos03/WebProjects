@@ -1,13 +1,15 @@
 *{
     margin: 0;
     padding: 0;
-    /* margin-bottom: 5px; */
     box-sizing: border-box;
 }
 
 body{
+    z-index: 0;
+    position: relative;
     font-size: 16px;
     background-color: #f5f5f5;
+    overflow-x: hidden;
 }
 
 button{
@@ -28,10 +30,42 @@ main{
     position: relative;
 }
 
+
+.side{
+    z-index: 3;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 80%;
+    transform: translateX(-100%);
+    background-color: white;
+}
+
+.container{
+    transform: translateX(0);
+    height: 100vh;
+}
+
+.container,
+.side{
+    transition: transform 0.35s ease;
+}
+
+.overlay {
+    position: fixed;
+    width: 100vw;  
+    height: 100vh;  
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 2;
+}
+
+
 .header{
+    z-index: 3;
     position: sticky;
     top: 0;
-    z-index: 100;
+    width: 100%;
     height: 70px;
     background-color: rgb(230, 101, 123);
     display: flex;
@@ -57,9 +91,10 @@ main{
     background-size: cover;
     cursor: pointer;
 }
+
 .header .r-btn{
-    height: 25px;
-    width: 25px;
+    height: 20px;
+    width: 20px;
     position: absolute;
     top: 50%;
     right: 10px;
@@ -77,7 +112,6 @@ main{
     color: white;
     font-size: 1.2em;
     display: inline-block;
-    /* margin: 10px; */
     padding: 10px;
 }
 
@@ -92,22 +126,45 @@ main{
     transition: width 0.3s ease;
 }
 
-
-
 .top-nav li.active::after{
     width: 100%;
 }
 
 
 .banner{
+    position: relative;
     margin-bottom: 20px;
     overflow: hidden;
+}
+
+.banner .dots{
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 20px;
+    list-style-type: none;
+}
+
+.banner .dots .dot{
+    width: 12px;
+    height: 12px;
+    border-radius: 8px;
+    display: inline-block;
+    border: 2px solid white;
+    margin: 5px;
+    background-color: transparent;
+    transition: background-color 0.3s ease;
+}
+
+.banner .dots .dot.active{
+    background-color: white;
 }
 
 .slide-container{
     font-size: 0;
     height: 350px;
-    width: 100%;
+    width: 100vw;
     white-space: nowrap;
     transform: translateX(0);
     transition: transform 0.5s ease;
@@ -129,6 +186,10 @@ main{
     background-color: white;
     padding: 20px;
     margin-bottom: 20px;
+}
+
+.quick-nav .item{
+    cursor: pointer;
 }
 
 .quick-nav .item img{
@@ -204,6 +265,8 @@ main{
 }
 
 .section-header .more{
+    color: #ccc;
+    text-decoration: none;
     position: absolute;
     right: 0;
     top: 50%;
@@ -235,10 +298,10 @@ main{
 }
 
 .bottom-nav{
+    position: sticky;
+    bottom: 0;
     box-sizing: content-box;
     padding: 10px;
-    position: fixed;
-    bottom: 0;
     width: 100%;
     background-color: white;
     height: 50px;
@@ -248,10 +311,17 @@ main{
 }
 
 .bottom-nav .item{
+    cursor: pointer;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: start;
+    opacity: 0.5;
+    transition: opacity .2s ease;
+}
+
+.bottom-nav .item.active{
+    opacity: 1;
 }
 
 .bottom-nav .item img{
@@ -259,6 +329,14 @@ main{
     height: 25px;
     object-fit: cover;
     margin-bottom: 3px;
+}
+
+.bottom-nav .item.active p {
+    color: rgb(36, 34, 34);
+}
+
+.bottom-nav .item p{
+    color: #664343;
 }
 
 .move-up{
