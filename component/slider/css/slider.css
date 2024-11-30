@@ -1,0 +1,42 @@
+.slider-container{
+    position: relative;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+.slider-wrapper{
+    position: relative;
+    height: 100%;
+    width: 100%;
+    transition: left 0.5s;
+}
+
+.slider-wrapper .slide{
+    position: absolute;
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+}
+
+.sport-container{
+    padding: 0px;
+    list-style-type: none;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+}
+
+.sport-container .sport{
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 8px;
+    margin-right: 10px;
+    background-color: #c9b2b2;
+}
+
+.sport-container .sport.active{
+    background-color: orangered;
+}

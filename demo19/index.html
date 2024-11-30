@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Demo19</title>
-    <link href="index.css" rel="stylesheet"/>
+    <link href="./styles/slider.css" rel="stylesheet"/>
+    <link href="./styles/index.css" rel="stylesheet"/>
 </head>
 <body>
     <div id="overlay"></div>
@@ -21,15 +22,7 @@
             <button class="r-btn"></button>
         </div>
         <main>
-            <div class="banner">
-                <div class="slide-container">
-                    <img class="slide active" src="https://images.unsplash.com/photo-1599394022918-6c2776530abb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1458&q=80">
-                    <img class="slide" src="https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80">
-                    <img class="slide" src="https://images.unsplash.com/photo-1599423300746-b62533397364?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80">
-                    <img class="slide" src="https://images.unsplash.com/photo-1599561046251-bfb9465b4c44?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1492&q=80">
-                </div>
-                <ul class="dots"></ul>
-            </div>
+            <div id="banner"></div>
             <div class="quick-nav">
                 <div class="item">
                     <img src="./images/shop.png">
@@ -126,7 +119,26 @@
             </div>
         </footer>
     </div>
-    <script src="script.js"></script>
+    <script src="./scripts/slider.js"></script>
+    <script>
+        new Slider({
+            imgArr: [
+                {
+                    url: "https://images.unsplash.com/photo-1599394022918-6c2776530abb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1458&q=80"
+                },
+                {
+                    url: "https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80"
+                },
+                {
+                    url: "https://images.unsplash.com/photo-1599423300746-b62533397364?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80"
+                },
+                {
+                    url: "https://images.unsplash.com/photo-1599561046251-bfb9465b4c44?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1492&q=80"
+                }
+            ],
+            containerID: "banner"
+        });
+    </script>
 </div>
 </body>
 </html>

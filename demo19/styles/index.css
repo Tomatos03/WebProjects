@@ -130,54 +130,11 @@ main{
     width: 100%;
 }
 
-
-.banner{
-    position: relative;
-    margin-bottom: 20px;
-    overflow: hidden;
-}
-
-.banner .dots{
-    position: absolute;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    height: 20px;
-    list-style-type: none;
-}
-
-.banner .dots .dot{
-    width: 12px;
-    height: 12px;
-    border-radius: 8px;
-    display: inline-block;
-    border: 2px solid white;
-    margin: 5px;
-    background-color: transparent;
-    transition: background-color 0.3s ease;
-}
-
-.banner .dots .dot.active{
-    background-color: white;
-}
-
-.slide-container{
-    font-size: 0;
-    height: 350px;
-    width: 100vw;
-    white-space: nowrap;
-    transform: translateX(0);
-    transition: transform 0.5s ease;
-}
-
-.slide{
-    cursor: pointer;
-    display: inline-block;
-    height: 100%;
+#banner{
     width: 100%;
-    object-fit: cover;
+    height: 300px;
+    margin-bottom: 20px;
 }
-
 
 .quick-nav{
     display: flex;

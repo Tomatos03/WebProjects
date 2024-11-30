@@ -189,12 +189,14 @@ function fixOffset() {
 function nextSlide() {
     // if(isResizing) return;
     isSliding = true;
-    curSlideIndex = (curSlideIndex + 1) % slide_number
-    slide_container.style.transform = `translateX(-${slideWidth * curSlideIndex}px)`;
+    curSlideIndex = (curSlideIndex + 1) % slide_number;
+    // slide_container.style.transform = `translateX(-${slideWidth * curSlideIndex}px)`;
+    slide_container.style.transform = `translateX(-${document.querySelector('.slide-container') * curSlideIndex}%)`;
 }
 
 function prevSlide() {
     isSliding = true;
     curSlideIndex = (curSlideIndex - 1 + slide_number) % slide_number;
-    slide_container.style.transform = `translateX(-${slideWidth * curSlideIndex}px)`;
+    // slide_container.style.transform = `translateX(-${slideWidth * curSlideIndex}px)`;
+    slide_container.style.transform = `translateX(-${document.querySelector('.slide-container') * curSlideIndex}%)`;
 }
