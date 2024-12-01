@@ -4,6 +4,7 @@ class Slider {
 
         this.initContainer();
         this.initSlide();
+        this.initBtn();
 
         if(this.showSportIndicator) {
             this.initSports();
@@ -14,6 +15,10 @@ class Slider {
     }
 
     initSports() {
+        if(this.slideNumber == 1) {
+            return;
+        }
+
         let sport = `
             <li class = "sport active"></li>
         `;
@@ -25,25 +30,59 @@ class Slider {
         this.sportContainerDom.innerHTML = sport;
     }
 
+    initBtn() {
+        if(this.slideNumber == 1) {
+            return;
+        }
+
+        this.leftBtn = document.createElement('button');
+        this.leftBtn.style.backgroundImage = `url(${this.btnImg.leftImgPath})`;
+        this.leftBtn.classList.add('left-btn');
+        this.sliderContainerDom.appendChild(this.leftBtn);
+
+
+        this.rightBtn = document.createElement('button');
+        this.rightBtn.style.backgroundImage = `url(${this.btnImg.rightImgPath})`;
+        this.rightBtn.classList.add('right-btn');
+        this.sliderContainerDom.appendChild(this.rightBtn);
+    }
+
     initVar(obj) {
         this.imgArr = obj.imgArr || [];
         this.showSportIndicator = obj.showSportIndicator || true;
         this.slideNumber = this.imgArr.length || 0;
-        this.displayTime = obj.displayTime || 1500;
+		this.aniTime = obj.aniTime || 1500;
+		this.intervalTime = obj.intervalTime + this.aniTime || 2500;
         this.curSlideIndex = 0;
+        this.btnImg = obj.btnImg;
+        this.prevTimeStamp = Date.now();
 
-        this.containerID = obj.containerID;
-		this.containerDom = document.getElementById(this.containerID);
+        // this.containerID = obj.containerID;
+		this.containerDom = document.getElementById(obj.containerID);
     }
 
+
     initSlide() {
-        let slides = '';
-        console.log(this.imgArr.length);
-        for(let i = 0; i < this.imgArr.length; ++i) {
+        let n = this.slideNumber;
+        if(n == 1) {
+            this.sliderWrapperDom.innerHTML = `
+                <img class="slide" src="${this.imgArr[0].url}" style="left: 0;"/>
+            `;
+            return;
+        }
+
+        let slides = `
+            <img class="slide" src="${this.imgArr[n - 1].url}" style="left: calc(-100%);"/>
+        `;
+        for(let i = 0; i < n; ++i) {
             slides += `
                 <img class="slide" src="${this.imgArr[i].url}" style="left: calc(${i} * 100%);"/>
             `;
         }
+        slides += `
+            <img class="slide" src="${this.imgArr[0].url}" style="left: calc(${n} * 100%);"/>
+        `;
+
         this.sliderWrapperDom.innerHTML = slides;
     }
     
@@ -64,27 +103,96 @@ class Slider {
     }
 
     eventBind() {
+        this.sliderContainerDom.addEventListener('mouseout', this.hideBtn.bind(this));
 
+        this.sliderContainerDom.addEventListener('mouseover', this.displayBtn.bind(this));
+
+        const factor = 0.7;
+        this.leftBtn.addEventListener('click', () =>{
+            // 节流
+            let now = Date.now();
+            if (now - this.prevTimeStamp >= this.aniTime * factor) {
+                this.stopPlaySlide();
+                this.prevSlide(this.aniTime * factor);
+                this.autoPlaySlide();
+                this.prevTimeStamp = Date.now();
+            }
+        });
+
+        this.rightBtn.addEventListener('click', () => {
+            // 节流
+            let now = Date.now();
+            if (now - this.prevTimeStamp >= this.aniTime * factor) {
+                this.stopPlaySlide();
+                this.nextSlide(this.aniTime * factor);
+                this.autoPlaySlide();
+                this.prevTimeStamp = Date.now();
+            }
+        });
     }
 
-    setDisplayTime(newDisplaytime) {
-        this.displayTime = newDisplaytime;
+    displayBtn() {
+        this.leftBtn.classList.remove('no-active');
+        this.rightBtn.classList.remove('no-active');
+    }
+
+    hideBtn() {
+        this.leftBtn.classList.add('no-active');
+        this.rightBtn.classList.add('no-active');
+    }
+
+    stopPlaySlide() {
+        clearInterval(this.slideInterval);
     }
     
     autoPlaySlide() {
-        setInterval(this.nextSlide.bind(this), this.displayTime);
+        if(this.slideNumber == 1) {
+            return;
+        }
+
+        this.slideInterval = setInterval(this.nextSlide.bind(this, this.aniTime), this.intervalTime);
     }
 
-    nextSlide() {
-        this.curSlideIndex = (this.curSlideIndex + 1) % this.slideNumber;
-
-        this.sliderWrapperDom.style.left =  `calc(-${this.curSlideIndex} * 100%)`;
-        if(this.showSportIndicator) {
-            const sports = this.sportContainerDom.children;
-            const preSlideIndex = (this.curSlideIndex - 1 + this.slideNumber) % this.slideNumber;
-            sports[preSlideIndex].classList.remove('active');
-            sports[this.curSlideIndex].classList.add('active');
+    updateActiveSport() {
+        const sports = this.sportContainerDom.children;
+        const n = sports.length;
+        for(let i = 0; i < n; ++i) {
+            if(i == this.curSlideIndex) {
+                sports[i].classList.add('active');
+            } else {
+                sports[i].classList.remove('active');
+            }
         }
+    }
+
+    nextSlide(aniTime) {
+        ++this.curSlideIndex;
+        this.sliderWrapperDom.style.transition = `left ${aniTime / 1000}s`;
+        this.sliderWrapperDom.style.left =  `calc(-${this.curSlideIndex} * 100%)`;
+
+        if(this.curSlideIndex === this.slideNumber) {
+            this.curSlideIndex = 0;
+            setTimeout(() => {
+                this.sliderWrapperDom.style.transitionProperty = 'none';
+                this.sliderWrapperDom.style.left = `0`;
+            }, aniTime);
+        }
+        this.updateActiveSport();
+    }
+
+    prevSlide(aniTime) {
+        --this.curSlideIndex;
+        this.sliderWrapperDom.style.transition = `left ${aniTime / 1000}s`;
+        this.sliderWrapperDom.style.left =  `calc(${-this.curSlideIndex} * 100%)`;
+        
+        if(this.curSlideIndex === -1) {
+            this.curSlideIndex = this.slideNumber - 1;
+            setTimeout(() => {
+                this.sliderWrapperDom.style.transitionProperty = 'none';
+                this.sliderWrapperDom.style.left = `calc(${-this.curSlideIndex} * 100%)`;
+            }, aniTime);
+        }
+        this.updateActiveSport();
     }
 }
 
