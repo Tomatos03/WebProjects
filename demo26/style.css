@@ -1,0 +1,46 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    position: relative;
+    font-size: 16px;
+    min-height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.define-btn{
+    position: relative;
+    width: 150px;
+    height: 50px;
+    border-radius: 25px;
+    background-color: #ccc;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.define-btn .circle{
+    box-sizing: border-box;
+    position: absolute;
+    left: 0px;
+    width: 50px;
+    height: 50px;
+    background-color: white;
+    border-radius: 25px;
+    padding: 10px;
+    transition: left ease 0.7s;
+    box-shadow: 0 0 2px black;
+}
+
+.define-btn.active{
+    background-color: blueviolet;
+    transition: background-color ease 0.7s;
+}
+
+.circle.active{
+    left: calc(100% - 50px);
+}
